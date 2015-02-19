@@ -1,0 +1,14 @@
+{
+    "name"         : "node-red-kafka-nodes",
+    "version"      : "0.0.1",
+    "description"  : "A few nodes to use Apache Kafka as both a producer or a consumer.",
+    "dependencies": {
+		"kafka-node":"^0.2.14",
+    },
+    "keywords": [ "node-red", "kafka", "event" ],
+    "node-red"     : {
+        "nodes": {
+            "sample": "sample/sample.js"
+        }
+    }
+}
