@@ -1,17 +1,18 @@
 <script type="text/javascript">
     RED.nodes.registerType('kafka consumer',{
         category: 'input',
-		color: '#66cc99',
+        color: '#66cc99',
         defaults: {
             name: {value:""},
-			zookeeperServer: {value:""}
+            topic: {value:"",required:true},
+            zookeeperServer: {value:""}
         },
         outputs:1,
         icon: "feed.png",
         label: function() {
             return this.name||this.topic||"kafka consumer";
         },
-		labelStyle: function() {
+        labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
     });
@@ -22,25 +23,25 @@
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-	
-	<div class="form-row">
+    
+    <div class="form-row">
         <label for="node-input-zookeeperServer"><i class="fa fa-globe"></i> Zookeeper Server Address</label>
         <input type="text" id="node-input-zookeeperServer" placeholder="Zookeeper Server">
     </div>
-	
-	<div class="form-row">
-	    <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
+    
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
         <input type="text" id="node-input-topic" placeholder="Topic">
-	</div>
+    </div>
 
 </script>
 
 <script type="text/x-red" data-help-name="kafka consumer">
     <p>A consumer node for a Apache Kafka server.</p>
-	<p>The <b>Zookeeper</b> Server associated with your Kafka server should be used here.  
-	You don't need to know your Kafka server's address for this to work!</p>
-	<p>Make sure that the topic to which you're subscribing exists, otherwise you will not be able to connect your consumer.  You can find list the topics 
-	using command line tools available from Apache Kafka's main page.</p>
+    <p>The <b>Zookeeper</b> Server associated with your Kafka server should be used here.  
+    You don't need to know your Kafka server's address for this to work!</p>
+    <p>Make sure that the topic to which you're subscribing exists, otherwise you will not be able to connect your consumer.  You can find list the topics 
+    using command line tools available from Apache Kafka's main page.</p>
 </script>
 
 
@@ -48,19 +49,19 @@
 <script type="text/javascript">
     RED.nodes.registerType('kafka producer',{
         category: 'output',
-		color: '#66cc99',
+        color: '#66cc99',
         defaults: {
             name: {value:""},
-			topic: {value:"",required:true},
-			zookeeperServer: {value:""}
+            topic: {value:"",required:true},
+            zookeeperServer: {value:""}
         },
         outputs:0,
-		inputs:1,
+        inputs:1,
         icon: "feed.png",
         label: function() {
             return this.name||this.topic||"kafka producer";
         },
-		labelStyle: function() {
+        labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
     });
@@ -71,24 +72,24 @@
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-	
-	<div class="form-row">
+    
+    <div class="form-row">
         <label for="node-input-zookeeperServer"><i class="fa fa-globe"></i> Zookeeper Server Address</label>
         <input type="text" id="node-input-zookeeperServer" placeholder="Zookeeper Server">
     </div>
-	
-	<div class="form-row">
-	    <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
+    
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
         <input type="text" id="node-input-topic" placeholder="Topic">
-	</div>
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="kafka producer">
     <p>A producer node for Apache Kafka.</p>
-	<p>This will send any incoming message to Kafka immediately.  The message will be sent in whatever form it is received from the input.
-	When sending the message to Kafka producer, it should be in the message's <b>topic</b> field to avoid sending metadata as part of the "message". </p>
-	<p>The <b>Zookeeper</b> Server associated with your Kafka server should be used here.  
-	You don't need to know your Kafka server's address for this to work!</p>
-	<p>The topic can be new; feel free to be as specific as you need to be.  You can only send to one topic at a time, so create different producers
-	for your various topics if needed.</p>
+    <p>This will send any incoming message to Kafka immediately.  The message will be sent in whatever form it is received from the input.
+    When sending the message to Kafka producer, it should be in the message's <b>topic</b> field to avoid sending metadata as part of the "message". </p>
+    <p>The <b>Zookeeper</b> Server associated with your Kafka server should be used here.  
+    You don't need to know your Kafka server's address for this to work!</p>
+    <p>The topic can be new; feel free to be as specific as you need to be.  You can only send to one topic at a time, so create different producers
+    for your various topics if needed.</p>
 </script>
