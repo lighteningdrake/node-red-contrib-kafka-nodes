@@ -67,10 +67,6 @@ module.exports = function(RED) {
                 if(err){
                     //TODO: HANDLE WHAT TO DO ON A SERVER WITH NO TOPIC CREATION ENABLED
                     console.log(err);
-                    kProducer.send([{
-                        topic: kTopic,
-                        messages: msg.payload
-                    }]);
                 } else {
                     kProducer.send([{
                         topic: kTopic,
