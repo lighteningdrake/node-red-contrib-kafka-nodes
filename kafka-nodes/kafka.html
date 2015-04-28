@@ -3,9 +3,9 @@
         category: 'input',
         color: '#66cc99',
         defaults: {
+            address: { type:"kafka-credentials", required: true },
             name: {value:""},
-            topic: {value:"",required:true},
-            zookeeperServer: {value:""}
+            topic: {value:""},
         },
         outputs:1,
         icon: "feed.png",
@@ -20,15 +20,13 @@
 
 <script type="text/x-red" data-template-name="kafka consumer">
     <div class="form-row">
+        <label for="node-input-address"><i class="fa fa-globe"></i> Zookeeper Server</label>
+        <input type="text" id="node-input-address">
+    </div>
+    <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    
-    <div class="form-row">
-        <label for="node-input-zookeeperServer"><i class="fa fa-globe"></i> Zookeeper Server Address</label>
-        <input type="text" id="node-input-zookeeperServer" placeholder="Zookeeper Server">
-    </div>
-    
     <div class="form-row">
         <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
         <input type="text" id="node-input-topic" placeholder="Topic">
@@ -51,9 +49,9 @@
         category: 'output',
         color: '#66cc99',
         defaults: {
+            address: { type:"kafka-credentials", required: true },
             name: {value:""},
-            topic: {value:"",required:true},
-            zookeeperServer: {value:""}
+            topic: {value:"",required:true}
         },
         outputs:0,
         inputs:1,
@@ -69,19 +67,47 @@
 
 <script type="text/x-red" data-template-name="kafka producer">
     <div class="form-row">
+        <label for="node-input-address"><i class="fa fa-globe"></i> Zookeeper Server</label>
+        <input type="text" id="node-input-address">
+    </div>
+    <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    
-    <div class="form-row">
-        <label for="node-input-zookeeperServer"><i class="fa fa-globe"></i> Zookeeper Server Address</label>
-        <input type="text" id="node-input-zookeeperServer" placeholder="Zookeeper Server">
-    </div>
-    
     <div class="form-row">
         <label for="node-input-topic"><i class="fa fa-tasks"></i> Topic</label>
         <input type="text" id="node-input-topic" placeholder="Topic">
     </div>
+</script>
+
+
+<script type="text/javascript">
+    RED.nodes.registerType('kafka-credentials',{
+        category: 'config',
+        defaults: {
+            name: {value:""},
+            zookeeperServer: {value:""}
+        },
+        credentials: {
+            name: {type:"text"},
+            zookeeperServer: {type:"text"},
+        },
+        outputs:0,
+        label: function() {
+            return this.name;
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="kafka-credentials">
+        <div class="form-row">
+          <label for="node-config-input-name"><i class="fa fa-user"></i> Name</label>
+          <input type="text" id="node-config-input-name">
+        </div>
+        <div class="form-row" id="node-config-zookeeperServer">
+            <label for="node-config-input-zookeeperServer"><i class="fa fa-globe"></i>Zookeeper Server Address</label>
+            <input type="text" id="node-config-input-zookeeperServer">
+        </div>
 </script>
 
 <script type="text/x-red" data-help-name="kafka producer">
